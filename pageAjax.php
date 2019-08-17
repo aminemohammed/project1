@@ -15,6 +15,8 @@ function fonction()
 	
 	<!--recuperation de l'identifiant du champ select--> 
 	var select = document.getElementById('couleur');
+	
+	//vider le select a chaque execution de la fonction
 	select.options.length=0;
 	
 	if(val!='')
@@ -24,9 +26,7 @@ function fonction()
 	
 	<!--onreadystatechange: difintion de la fonction JavaScript qui va s'executer lorsque la réponse est reçue-->  
 	httpRequest.onreadystatechange = function() {
-	
-    select.options.length=0;
-	
+		
 	<!--responseText: renvoie la réponse du serveur sous la forme d’une chaîne de texte--> 
     <!--split: decouper une chaine par raport d'un seperateur--> 
 	var list= httpRequest.responseText.split("|");
@@ -44,7 +44,7 @@ function fonction()
 	};
     
     <!--Définit l'envoi GET ou POST, le mode asynchrone et l'url de l'appel AJAX-->	
-    httpRequest.open("GET", " pagePhp.php?valeur= '"+ val +"' ", true);
+    httpRequest.open("GET", " pagePhp.php?valeur= '"+ val +"' ", false);
 	
 	<!--Déclenche l'appel AJAX vers le serveur avec d'éventuels paramètres-->	
     httpRequest.send();
@@ -56,6 +56,14 @@ function fonction2()
   var val=document.getElementById("nom").value;
   
   var Table = document.getElementById ("table");
+  
+  var tailleTable=Table.rows.length;
+  
+      //vider le tableau a chaque execution de la fonction  
+      for(z=1;z< tailleTable;z++)
+	  {
+	  Table.deleteRow(1);
+	  }
   
   httpRequest1 = new XMLHttpRequest();	
  
@@ -73,17 +81,16 @@ function fonction2()
     var Ligne = Table.insertRow(j);
     // Insère une cellule dans la ligne à l'indice 0
     var Cellule = Ligne.insertCell(0);
-     // Ajoute un texte à la cellule
+     // Ajoute un texte à la 1er cellule
     Cellule.innerHTML=list[i];
 	
 	var Cellule = Ligne.insertCell(1);
-     // Ajoute un texte à la cellule
+     // Ajoute un texte à la 2eme cellule
     Cellule.innerHTML=list[i+1];
 	 }
   };  
   
-  
-  httpRequest1.open("GET", " pagePhp2.php?valeur= '"+ val +"' ", true);	 
+  httpRequest1.open("GET", " pagePhp2.php?valeur= '"+ val +"' ", false);	 
   httpRequest1.send();
 	}
 }
