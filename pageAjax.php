@@ -107,7 +107,7 @@ function fonction2()
 <form  method="GET">
 
 <label for="f">Nom de produit</label>
-<input type="nom" name="nom" id="nom"  oninput="fonction2()"/><br/><br/>
+<input type="nom" name="nom" id="nom"  oninput="fonction();fonction2()"/><br/><br/>
 
 <label for="f">liste des produits</label>
 <select id="couleur"  name="couleur"  size="1">  </select> <br/><br/>
